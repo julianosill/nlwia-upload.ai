@@ -62,7 +62,7 @@ export function VideoInputForm() {
       return
     }
     const audioFile = await convertVideoToAudio(videoFile)
-    console.log(audioFile)
+    console.log(audioFile, prompt)
   }
 
   const previewURL = useMemo(() => {
@@ -78,7 +78,7 @@ export function VideoInputForm() {
         htmlFor="video"
         className="relative border flex rounded-md aspect-video cursor-pointer border-dashed text-sm flex-col gap-2 items-center justify-center text-muted-foreground hover:bg-primary/10"
       >
-        {videoFile ? (
+        {previewURL ? (
           <video
             src={previewURL}
             controls={false}
