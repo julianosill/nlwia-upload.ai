@@ -6,7 +6,7 @@ import workerURL from '../ffmpeg/ffmpeg-worker.js?url'
 
 let ffmpeg: FFmpeg | null
 
-export async function getFFMpeg() {
+export async function getFFmpeg() {
   if (ffmpeg) {
     return ffmpeg
   }
