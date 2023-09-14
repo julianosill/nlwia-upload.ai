@@ -16,14 +16,23 @@ import { ModeButton } from './components/mode-button'
 import { VideoInputForm } from './components/video-input-form'
 import { PromptSelect } from './components/prompt-select'
 import { useState } from 'react'
+import { useCompletion } from 'ai/react'
 
 export function App() {
   const [temperature, setTemperature] = useState(0.5)
   const [videoId, setVideoId] = useState<string | null>(null)
 
-  function handlePromptSelected(template: string) {
-    console.log(template)
-  }
+  // function handlePromptSelected(template: string) {
+  //   console.log(template)
+  // }
+
+  const { input, setInput, handleInputChange } = useCompletion({
+    api: 'https://localhost:3333/ai/complete',
+    body: {
+      videoId,
+      temperature,
+    },
+  })
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -44,7 +53,7 @@ export function App() {
             <form className="space-y-10">
               <div className="space-y-4">
                 <Label className="text-md">Prompt</Label>
-                <PromptSelect onPromptSelected={handlePromptSelected} />
+                <PromptSelect onPromptSelected={setInput} />
               </div>
               <div className="space-y-4">
                 <Label className="text-md">Modelo</Label>
@@ -84,6 +93,8 @@ export function App() {
               <Textarea
                 className="resize-none p-4 leading-relaxed"
                 placeholder="Inclua o prompt para a IA..."
+                value={input}
+                onChange={handleInputChange}
               />
               <Textarea
                 className="resize-none p-4 leading-relaxed"
