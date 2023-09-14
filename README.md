@@ -1,6 +1,6 @@
 # Upload.ai :: React Front-End Application
 
-![Imagem de um MacBook com a tela inicial da aplicação aberta](github/readme-presentation.png)
+![Imagem de um MacBook com a tela inicial da aplicação aberta](github/readme-presentation-rounded.png)
 
 Aplicação Front-End desenvolvida durante a 13ª edição do NLW (Next Level Week), focada no desenvolvimento e integração com IA (Inteligência Artificial), realizada pela Rocketseat. Neste evento, realizei o desenvolvimento Full Stack de toda a aplicação, através de tecnologias como `React`, `Node.js`, `TailwindCSS`, `WebAssembly`, `Prisma`, entre outras.
 
