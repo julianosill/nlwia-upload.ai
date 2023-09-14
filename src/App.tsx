@@ -19,6 +19,7 @@ import { useState } from 'react'
 
 export function App() {
   const [temperature, setTemperature] = useState(0.5)
+  const [videoId, setVideoId] = useState<string | null>(null)
 
   function handlePromptSelected(template: string) {
     console.log(template)
@@ -39,7 +40,7 @@ export function App() {
         </header>
         <main className="flex-1 p-6 flex gap-6">
           <aside className="w-80 space-y-12">
-            <VideoInputForm />
+            <VideoInputForm onVideoUplodaded={setVideoId} />
             <form className="space-y-10">
               <div className="space-y-4">
                 <Label className="text-md">Prompt</Label>
