@@ -17,6 +17,10 @@ import { VideoInputForm } from './components/video-input-form'
 import { PromptSelect } from './components/prompt-select'
 
 export function App() {
+  function handlePromptSelected(template: string) {
+    console.log(template)
+  }
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <div className="min-h-screen flex flex-col">
@@ -36,7 +40,7 @@ export function App() {
             <form className="space-y-10">
               <div className="space-y-4">
                 <Label className="text-md">Prompt</Label>
-                <PromptSelect />
+                <PromptSelect onPromptSelected={handlePromptSelected} />
               </div>
               <div className="space-y-4">
                 <Label className="text-md">Modelo</Label>
