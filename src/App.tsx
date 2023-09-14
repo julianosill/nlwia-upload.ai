@@ -22,15 +22,21 @@ export function App() {
   const [temperature, setTemperature] = useState(0.5)
   const [videoId, setVideoId] = useState<string | null>(null)
 
-  // function handlePromptSelected(template: string) {
-  //   console.log(template)
-  // }
-
-  const { input, setInput, handleInputChange } = useCompletion({
-    api: 'https://localhost:3333/ai/complete',
+  const {
+    input,
+    setInput,
+    handleInputChange,
+    handleSubmit,
+    completion,
+    isLoading,
+  } = useCompletion({
+    api: 'http://localhost:3333/ai/complete',
     body: {
       videoId,
       temperature,
+    },
+    headers: {
+      'Content-type': 'application/json',
     },
   })
 
@@ -50,7 +56,7 @@ export function App() {
         <main className="flex-1 p-6 flex gap-6">
           <aside className="w-80 space-y-12">
             <VideoInputForm onVideoUplodaded={setVideoId} />
-            <form className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-10">
               <div className="space-y-4">
                 <Label className="text-md">Prompt</Label>
                 <PromptSelect onPromptSelected={setInput} />
@@ -83,7 +89,12 @@ export function App() {
                   com possíveis erros.
                 </span>
               </div>
-              <Button type="submit" size="lg" className="w-full">
+              <Button
+                disabled={isLoading}
+                type="submit"
+                size="lg"
+                className="w-full"
+              >
                 <Wand2 className="w-5 h-5 mr-3" /> Executar
               </Button>
             </form>
@@ -99,6 +110,7 @@ export function App() {
               <Textarea
                 className="resize-none p-4 leading-relaxed"
                 placeholder="Resultado gerado pela IA..."
+                value={completion}
                 readOnly
               />
             </div>
